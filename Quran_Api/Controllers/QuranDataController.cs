@@ -1,28 +1,59 @@
 ﻿using Application;
+using Application.Repositories;
 using DbModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Quran_Api.Controllers
 {
+    /// <summary>
+    /// Controller for handling Quran data and Surah-related HTTP requests.
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class QuranDataController : ControllerBase
     {
-        private readonly IDatabaseRepository<QuranData> _repository;
+        private readonly IDatabaseRepository<QuranData> _repo;   // Repository for QuranData entity
+        private readonly IDatabaseRepository<Surah> _surahRepo;   // Repository for Surah entity
+        private readonly IQuranRepo _quranDataRepo;
 
-        public QuranDataController(IDatabaseRepository<QuranData> repository)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QuranDataController"/> class.
+        /// </summary>
+        /// <param name="repository">Repository for QuranData entity.</param>
+        /// <param name="surahRepo">Repository for Surah entity.</param>
+        public QuranDataController(IDatabaseRepository<QuranData> repository, IDatabaseRepository<Surah> surahRepo, IQuranRepo quranDataRepo)
         {
-            _repository = repository;
+            _repo = repository;
+            _surahRepo = surahRepo;
+            _quranDataRepo = quranDataRepo;
         }
 
+        /// <summary>
+        /// Gets a list of QuranData entities.
+        /// </summary>
+        /// <returns>An action result containing the list of QuranData entities.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllEntities()
+        public async Task<IActionResult> GetAllQuranData()
         {
-            var allEntities = await _repository.GetRepository().GetAll(10);
+            // Retrieve QuranData entities from the repository with a limit of 10.
+            var allEntities = await _repo.GetRepository().GetAll(10);
+
+            // Return a 200 OK response with the retrieved entities.
             return Ok(allEntities);
         }
 
-        // Other API actions...
-    }
+        /// <summary>
+        /// Gets a list of Surah names.
+        /// </summary>
+        /// <returns>An action result containing the list of Surah names.</returns>
+        [HttpGet("SurahList")]
+        public async Task<IActionResult> GetSurahList()
+        {
+            // Extract Surah names from the entities.
+            var surahNames = await _quranDataRepo.GetSurahList();
 
+            // Return a 200 OK response with the list of Surah names.
+            return Ok(surahNames);
+        }
+    }
 }

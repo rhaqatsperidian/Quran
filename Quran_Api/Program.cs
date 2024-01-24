@@ -1,4 +1,5 @@
 using Application;
+using Application.Repositories;
 using DbModels;
 using SqliteDbLayer;
 
@@ -28,12 +29,24 @@ namespace Quran_Api
 
             // Add Swagger services for API documentation.
             builder.Services.AddSwaggerGen();
-
+       
             // Replace with your actual SQLite connection string.
             string sqliteConnectionString = "Data Source=quran_db;";
 
             // Register the SQLite repository for the QuranData model in the dependency injection container.
             builder.Services.AddSingleton<IDatabaseRepository<QuranData>>(provider => new SQLiteDatabaseRepository<QuranData>(sqliteConnectionString));
+            builder.Services.AddSingleton<IDatabaseRepository<Surah>>(provider => new SQLiteDatabaseRepository<Surah>(sqliteConnectionString));
+            builder.Services.AddSingleton<IQuranRepo>(new QuranRepo(sqliteConnectionString));
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAnyOrigin",
+                    builder => builder
+                        .WithOrigins("http://localhost:4200") // Add your allowed origin(s)
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
+
 
             // Build the web application.
             var app = builder.Build();
@@ -46,6 +59,8 @@ namespace Quran_Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors("AllowAnyOrigin");
 
             // Enable authorization handling.
 
