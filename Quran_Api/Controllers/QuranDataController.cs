@@ -13,7 +13,6 @@ namespace Quran_Api.Controllers
     public class QuranDataController : ControllerBase
     {
         private readonly IDatabaseRepository<QuranData> _repo;   // Repository for QuranData entity
-        private readonly IDatabaseRepository<Surah> _surahRepo;   // Repository for Surah entity
         private readonly IQuranRepo _quranDataRepo;
 
         /// <summary>
@@ -21,10 +20,9 @@ namespace Quran_Api.Controllers
         /// </summary>
         /// <param name="repository">Repository for QuranData entity.</param>
         /// <param name="surahRepo">Repository for Surah entity.</param>
-        public QuranDataController(IDatabaseRepository<QuranData> repository, IDatabaseRepository<Surah> surahRepo, IQuranRepo quranDataRepo)
+        public QuranDataController(IDatabaseRepository<QuranData> repository, IQuranRepo quranDataRepo)
         {
             _repo = repository;
-            _surahRepo = surahRepo;
             _quranDataRepo = quranDataRepo;
         }
 
