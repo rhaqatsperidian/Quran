@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="Dapper" Version="2.1.28" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
@@ -22,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\DbModels\DbModels.csproj" />
+    <ProjectReference Include="..\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\SqliteDbLayer\SqliteDbLayer.csproj" />
   </ItemGroup>
 
