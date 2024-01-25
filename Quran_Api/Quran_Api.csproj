@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\DbModels\DbModels.csproj" />
+    <ProjectReference Include="..\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\SqliteDbLayer\SqliteDbLayer.csproj" />
   </ItemGroup>
 

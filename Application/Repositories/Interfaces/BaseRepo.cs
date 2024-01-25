@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using System.Data;
 
-namespace Application.Repositories
+namespace Application.Repositories.Interfaces
 {
     public abstract class BaseRepo
     {

@@ -1,5 +1,5 @@
 ﻿using Application;
-using Application.Repositories;
+using Application.Repositories.Interfaces;
 using DbModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,6 +52,19 @@ namespace Quran_Api.Controllers
 
             // Return a 200 OK response with the list of Surah names.
             return Ok(surahNames);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>An action result containing the list of Surah names.</returns>
+        [HttpGet("SurahText/{surah}")]
+        public async Task<IActionResult> GetQuranDataBySurah(int surah)
+        {
+            var allEntities = await _quranDataRepo.GetQuranDataBySurah(surah);
+
+            // Return a 200 OK response with the list of Surah names.
+            return Ok(allEntities);
         }
     }
 }
