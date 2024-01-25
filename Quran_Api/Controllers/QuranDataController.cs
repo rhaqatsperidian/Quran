@@ -55,16 +55,18 @@ namespace Quran_Api.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Retrieves Quran data for a specific Surah based on the provided Surah ID.
         /// </summary>
-        /// <returns>An action result containing the list of Surah names.</returns>
-        [HttpGet("SurahText/{surah}")]
-        public async Task<IActionResult> GetQuranDataBySurah(int surah)
+        /// <param name="surahId">The ID of the Surah for which Quran data is requested.</param>
+        /// <returns>An action result containing the Quran data for the specified Surah.</returns>
+        [HttpGet("SurahText/{surahId}")]
+        public async Task<IActionResult> GetQuranDataBySurah(int surahId)
         {
-            var allEntities = await _quranDataRepo.GetQuranDataBySurah(surah);
+            // Retrieve Quran data for the specified Surah ID from the repository
+            var surahData = await _quranDataRepo.GetQuranDataBySurah(surahId);
 
-            // Return a 200 OK response with the list of Surah names.
-            return Ok(allEntities);
+            // Return a 200 OK response with the Quran data for the specified Surah
+            return Ok(surahData);
         }
     }
 }
