@@ -24,10 +24,10 @@ namespace Application.Repositories
             }
         }
 
-        public Task<IEnumerable<QuranData>> GetQuranDataBySurah(int SurahNumber)
+        public Task<IEnumerable<QuranData>> GetQuranDataBySurah(int SurahId)
         {
             var sql = $@"SELECT * FROM {TableNameProvider<QuranData>.GetTableName()}
-                                                        WHERE {nameof(QuranData.surah_id)} = {SurahNumber}
+                                                        WHERE {nameof(QuranData.surah_id)} = {SurahId}
                                                         ORDER BY {nameof(QuranData.aya_id)} ASC";
             return GetDb().QueryAsync<QuranData>(sql);
         }
