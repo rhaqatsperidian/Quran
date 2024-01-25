@@ -31,9 +31,6 @@ namespace Application.Repositories
                                                         ORDER BY {nameof(QuranData.aya_id)} ASC";
             return GetDb().QueryAsync<QuranData>(sql);
         }
-        //public Task<IEnumerable<string>> GetParaList(bool arabicNames = true)
-        //{
 
-        //}
     }
 }
