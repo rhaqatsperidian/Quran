@@ -6,6 +6,3 @@
   - Material UI
   - ASP.NET Web API
   - SQLite database
-
-
-![AlQuranApp](https://github.com/rhaqatsperidian/Quran-e-Pak-Web-SPA-Angular/blob/develop/screenshots/Screenshot%202024-01-25%20084503.png)
