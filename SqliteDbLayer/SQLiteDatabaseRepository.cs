@@ -1,4 +1,5 @@
 ﻿using Application;
+using Application.Repositories.Interfaces;
 
 namespace SqliteDbLayer
 {

@@ -2,9 +2,9 @@
 
 namespace DbModels.ModelHelpers
 {
-    public class TableNameProvider<T> where T : class
+    public class TblUtils<T> where T : class
     {
-        public static string GetTableName()
+        public static string Table()
         {
             var tableAttr = typeof(T).GetCustomAttributes(typeof(TableAttribute), true).FirstOrDefault() as TableAttribute;
 
