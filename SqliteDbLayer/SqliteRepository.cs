@@ -1,4 +1,4 @@
-﻿using Application;
+﻿using Application.Repositories.Interfaces;
 using Dapper;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.Sqlite;

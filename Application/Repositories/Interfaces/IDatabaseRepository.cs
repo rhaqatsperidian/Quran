@@ -1,4 +1,6 @@
-﻿namespace Application
+﻿using Application.Repositories.Interfaces;
+
+namespace Application
 {
     /// <summary>
     /// Interface representing a generic database repository factory.

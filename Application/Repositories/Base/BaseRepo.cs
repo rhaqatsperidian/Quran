@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using System.Data;
 
-namespace Application.Repositories.Interfaces
+namespace Application.Repositories.Base
 {
     public abstract class BaseRepo
     {
@@ -12,7 +12,7 @@ namespace Application.Repositories.Interfaces
             _db = new SqliteConnection(cnnString);
         }
 
-        public IDbConnection GetDb()
+        public IDbConnection Db()
         {
             return _db;
         }

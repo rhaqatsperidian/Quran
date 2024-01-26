@@ -1,6 +1,7 @@
 using Application;
 using Application.Repositories;
 using Application.Repositories.Interfaces;
+using Application.Repositories.Repos;
 using DbModels;
 using SqliteDbLayer;
 
@@ -43,7 +44,7 @@ namespace Quran_Api
             {
                 options.AddPolicy("AllowAnyOrigin",
                     builder => builder
-                        .WithOrigins("http://localhost:4200") // Add your allowed origin(s)
+                       .WithOrigins("http://localhost:4200", "http://localhost:4300", "https://yourdomain.com") // Add your allowed origins
                         .AllowAnyHeader()
                         .AllowAnyMethod());
             });

@@ -1,4 +1,4 @@
-﻿namespace Application
+﻿namespace Application.Repositories.Interfaces
 {
     /// <summary>
     /// Interface defining standard CRUD operations for a generic repository.

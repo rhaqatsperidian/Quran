@@ -1,10 +1,11 @@
-﻿using Application.Repositories.Interfaces;
+﻿using Application.Repositories.Base;
+using Application.Repositories.Interfaces;
 using Dapper;
 using DbModels;
 using DbModels.ModelHelpers;
 using Dtos;
 
-namespace Application.Repositories
+namespace Application.Repositories.Repos
 {
     public class QuranRepo : BaseRepo, IQuranRepo
     {
@@ -16,20 +17,20 @@ namespace Application.Repositories
         {
             if (arabicNames)
             {
-                return GetDb().QueryAsync<SurahListDto>($"SELECT DISTINCT {nameof(QuranData.surah_name_urdu)} as SurahName, {nameof(QuranData.surah_id)} as SurahId FROM {TableNameProvider<QuranData>.GetTableName()}");
+                return Db().QueryAsync<SurahListDto>($"SELECT DISTINCT {nameof(QuranData.surah_name_urdu)} as SurahName, {nameof(QuranData.surah_id)} as SurahId FROM {TblUtils<QuranData>.Table()}");
             }
             else
             {
-                return GetDb().QueryAsync<SurahListDto>($"SELECT DISTINCT {nameof(QuranData.surah_name_eng)} as SurahName, {nameof(QuranData.surah_id)} as SurahId FROM {TableNameProvider<QuranData>.GetTableName()}");
+                return Db().QueryAsync<SurahListDto>($"SELECT DISTINCT {nameof(QuranData.surah_name_eng)} as SurahName, {nameof(QuranData.surah_id)} as SurahId FROM {TblUtils<QuranData>.Table()}");
             }
         }
 
         public Task<IEnumerable<QuranData>> GetQuranDataBySurah(int SurahId)
         {
-            var sql = $@"SELECT * FROM {TableNameProvider<QuranData>.GetTableName()}
+            var sql = $@"SELECT * FROM {TblUtils<QuranData>.Table()}
                                                         WHERE {nameof(QuranData.surah_id)} = {SurahId}
                                                         ORDER BY {nameof(QuranData.aya_id)} ASC";
-            return GetDb().QueryAsync<QuranData>(sql);
+            return Db().QueryAsync<QuranData>(sql);
         }
 
     }
